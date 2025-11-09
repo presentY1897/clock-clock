@@ -1,0 +1,87 @@
+import React, { useEffect, useState } from "react";
+import "./ClockBlock.css";
+import ClockFace from "./clock/ClockFace";
+import { getAngles } from "../utils/angleMap";
+
+export type ModeState = "random" | "go to current time" | "waiting";
+
+interface ClockBlockProps {
+  char: string;
+  col: number;
+  row: number;
+  clockSize?: string;
+  mode?: ModeState;
+  transitionDuration?: number;
+}
+
+const ClockBlock: React.FC<ClockBlockProps> = ({
+  char,
+  col,
+  row,
+  clockSize = "60px",
+  mode = "random",
+  transitionDuration = 30000,
+}) => {
+  const [hour, setHour] = useState([...Array(col * row)].map(() => 0));
+  const [minute, setMinute] = useState([...Array(col * row)].map(() => 0));
+
+  useEffect(() => {
+    const angles = getAngles(col, row, char);
+
+    switch (mode) {
+      case "go to current time":
+        setHour(
+          angles.map(
+            (angle, index) =>
+              Math.ceil(hour[index] / 360) * 360 + angle.hourAngle
+          )
+        );
+        setMinute(
+          angles.map(
+            (angle, index) =>
+              Math.ceil(minute[index] / 360) * 360 + angle.minuteAngle
+          )
+        );
+        break;
+      case "waiting":
+        break;
+      case "random":
+      default:
+        setHour(
+          [...Array(col * row)].map(
+            (_, index) =>
+              Math.ceil(hour[index] / 360) * 360 + Math.random() * 360
+          )
+        );
+        setMinute(
+          [...Array(col * row)].map(
+            (_, index) =>
+              Math.ceil(minute[index] / 360) * 360 + Math.random() * 360
+          )
+        );
+        break;
+    }
+  }, [mode]);
+
+  return (
+    <div
+      className="clock-block-container"
+      style={{
+        gridTemplateColumns: `repeat(${col}, 1fr)`,
+        gridTemplateRows: `repeat(${row}, 1fr)`,
+      }}
+    >
+      {[...Array(col * row).keys()].map((_, index) => (
+        <ClockFace
+          key={index}
+          size={clockSize}
+          hourAngle={hour[index]}
+          minuteAngle={minute[index]}
+          transitionDuration={`${transitionDuration}ms`}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default ClockBlock;

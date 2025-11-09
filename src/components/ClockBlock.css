@@ -1,0 +1,5 @@
+.clock-block-container {
+  display: grid;
+  gap: 10px;
+  margin: 5px;
+}
