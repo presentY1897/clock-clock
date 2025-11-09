@@ -1,0 +1,60 @@
+.clock-face-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(250, 250, 250, 0.921);
+  border-radius: 50%;
+  box-shadow: inset -25px 1px rgba(118, 112, 112, 0.5);
+}
+
+.clock-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.clock-hand {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center;
+}
+
+.hand-container {
+  position: absolute;
+  width: 1%;
+  height: 100%;
+  top: 0;
+}
+
+.hand-container .hand-inner-container {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+}
+
+.hand-container .hand-outer-container {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 50%;
+}
+
+.hand {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.hand-inner-container .hand {
+  bottom: 0;
+}
+
+.hand-outer-container .hand {
+  border-radius: 50%;
+}
