@@ -48,7 +48,14 @@ const ClockFace: React.FC<Partial<ClockFaceProps>> = ({
   minuteHand = { innerSize: "90%", outerSize: "1%", width: "4%" },
 }) => {
   return (
-    <div className="clock-face-container" style={{ width: size, height: size }}>
+    <div
+      className="clock-face-container"
+      style={{
+        width: size,
+        height: size,
+        boxShadow: `inset calc(-${size} * 0.2) 1px rgba(118, 112, 112, 0.5)`,
+      }}
+    >
       <div className="clock-face">
         <div
           className="clock-hand"
