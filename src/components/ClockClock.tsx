@@ -28,8 +28,6 @@ const ClockClock: React.FC<ClockClockProps> = ({
   );
   const [mode, setMode] = useState<ModeState>("random");
 
-  useEffect(() => {});
-
   useEffect(() => {
     const timerId = setTimeout(() => {
       switch (mode) {
