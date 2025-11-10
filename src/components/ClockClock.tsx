@@ -10,11 +10,13 @@ interface ClockClockProps {
     col: number;
     row: number;
   };
+  isPortrait?: boolean;
 }
 
 const ClockClock: React.FC<ClockClockProps> = ({
   clockSize = "60px",
   blockSize = { col: 4, row: 6 },
+  isPortrait = false,
 }) => {
   const formatTime = (date: Date, withColon = true) => {
     const hours = String(date.getHours()).padStart(2, "0");
@@ -52,7 +54,12 @@ const ClockClock: React.FC<ClockClockProps> = ({
   }, [mode]);
 
   return (
-    <div className="clock-clock-container">
+    <div
+      className="clock-clock-container"
+      style={{
+        flexDirection: `${isPortrait ? "column" : "row"}`,
+      }}
+    >
       {[...timeString].map((char, index) => (
         <ClockBlock
           key={index}
@@ -62,6 +69,7 @@ const ClockClock: React.FC<ClockClockProps> = ({
           row={blockSize.row}
           mode={mode}
           transitionDuration={transitionDuration}
+          isPivot={isPortrait}
         />
       ))}
     </div>
