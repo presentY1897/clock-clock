@@ -7,7 +7,19 @@ const L2 = { hourAngle: 90, minuteAngle: 180 };
 const L3 = { hourAngle: 180, minuteAngle: 270 };
 const L4 = { hourAngle: 270, minuteAngle: 0 };
 
+const NORMAL_ANGLE_MIN_COL = 4;
+const NORMAL_ANGLE_MIN_ROW = 6;
+
+
 export const getAngles = (maxCol: number, maxRow: number, char: string) => {
+  if (maxCol < NORMAL_ANGLE_MIN_COL || maxRow < NORMAL_ANGLE_MIN_ROW) {
+    return [];
+  } else {
+    return getNormalAngles(maxCol, maxRow, char);
+  }
+}
+
+const getNormalAngles = (maxCol: number, maxRow: number, char: string) => {
   const angles = [];
 
   switch (char) {

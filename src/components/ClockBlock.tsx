@@ -27,6 +27,7 @@ const ClockBlock: React.FC<ClockBlockProps> = ({
 
   useEffect(() => {
     const angles = getAngles(col, row, char);
+    if (angles.length === 0) return;
 
     switch (mode) {
       case "go to current time":
