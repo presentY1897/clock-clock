@@ -4,7 +4,7 @@ import "./ClockClockPage.css";
 
 const NORMAL_CLOCK_BLOCK_COL_COUNT = 4;
 const NORMAL_CLOCK_BLOCK_COUNT = 5;
-const CLOCK_MARGIN_PX = 20;
+const CLOCK_MARGIN_PX = 10;
 
 const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window;
