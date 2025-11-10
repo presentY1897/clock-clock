@@ -112,7 +112,7 @@ const getNormalAngles = (maxCol: number, maxRow: number, char: string) => {
 
       angles.push(L1);
       angles.push(...[...Array(maxCol - 3)].map(() => H));
-      angles.push(L4);
+      angles.push(L3);
       angles.push(V);
 
       for (let i = 0; i < Math.ceil((maxRow - 6) / 2); i++) {
@@ -196,7 +196,7 @@ const getNormalAngles = (maxCol: number, maxRow: number, char: string) => {
 
       angles.push(L2);
       angles.push(...[...Array(maxCol - 3)].map(() => H));
-      angles.push(L1);
+      angles.push(L4);
       angles.push(V);
 
       angles.push(...LOWER_LINE(maxCol));
