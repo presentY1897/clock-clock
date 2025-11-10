@@ -1,5 +1,5 @@
 
-const E = { hourAngle: 0, minuteAngle: 0 };
+const E = { hourAngle: 225, minuteAngle: 225 };
 const V = { hourAngle: 0, minuteAngle: 180 };
 const H = { hourAngle: 90, minuteAngle: 270 };
 const L1 = { hourAngle: 0, minuteAngle: 90 };
