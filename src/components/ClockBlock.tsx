@@ -27,6 +27,10 @@ const ClockBlock: React.FC<ClockBlockProps> = ({
   const [hour, setHour] = useState([...Array(col * row)].map(() => 0));
   const [minute, setMinute] = useState([...Array(col * row)].map(() => 0));
 
+  const getRandomAddAngle = () => {
+    return Math.floor(Math.random() * 180) + 180;
+  };
+
   useEffect(() => {
     let angles = getAngles(col, row, char);
     if (angles.length === 0) return;
@@ -56,13 +60,13 @@ const ClockBlock: React.FC<ClockBlockProps> = ({
         setHour(
           [...Array(col * row)].map(
             (_, index) =>
-              Math.ceil(hour[index] / 360) * 360 + Math.random() * 360
+              Math.ceil(hour[index] / 360) * 360 + getRandomAddAngle()
           )
         );
         setMinute(
           [...Array(col * row)].map(
             (_, index) =>
-              Math.ceil(minute[index] / 360) * 360 + Math.random() * 360
+              Math.ceil(minute[index] / 360) * 360 + getRandomAddAngle()
           )
         );
         break;
