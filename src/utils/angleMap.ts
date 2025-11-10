@@ -1,4 +1,9 @@
 
+type Angle = {
+  hourAngle: number;
+  minuteAngle: number;
+}
+
 const E = { hourAngle: 225, minuteAngle: 225 };
 const V = { hourAngle: 0, minuteAngle: 180 };
 const H = { hourAngle: 90, minuteAngle: 270 };
@@ -399,3 +404,21 @@ const LOWER_LINE = (maxCol: number) => {
   angles.push(L4);
   return angles;
 };
+
+export const pivotAngles = (maxCol: number, maxRow: number, angles: Angle[]) => {
+  const pivotAngles = [];
+
+  for (let col = 0; col < maxCol; col++) {
+    for (let row = maxRow - 1; row >= 0; row--) {
+      const index = row * maxCol + col;
+      if (angles[index]) {
+        pivotAngles.push({
+          hourAngle: angles[index].hourAngle + 90,
+          minuteAngle: angles[index].minuteAngle + 90,
+        });
+      }
+    }
+  }
+  return pivotAngles;
+
+}

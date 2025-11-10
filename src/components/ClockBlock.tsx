@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ClockBlock.css";
 import ClockFace from "./clock/ClockFace";
-import { getAngles } from "../utils/angleMap";
+import { getAngles, pivotAngles } from "../utils/angleMap";
 
 export type ModeState = "random" | "go to current time" | "waiting";
 
@@ -12,6 +12,7 @@ interface ClockBlockProps {
   clockSize?: string;
   mode?: ModeState;
   transitionDuration?: number;
+  isPivot?: boolean;
 }
 
 const ClockBlock: React.FC<ClockBlockProps> = ({
@@ -21,13 +22,17 @@ const ClockBlock: React.FC<ClockBlockProps> = ({
   clockSize = "60px",
   mode = "random",
   transitionDuration = 30000,
+  isPivot = false,
 }) => {
   const [hour, setHour] = useState([...Array(col * row)].map(() => 0));
   const [minute, setMinute] = useState([...Array(col * row)].map(() => 0));
 
   useEffect(() => {
-    const angles = getAngles(col, row, char);
+    let angles = getAngles(col, row, char);
     if (angles.length === 0) return;
+    if (isPivot) {
+      angles = pivotAngles(col, row, angles);
+    }
 
     switch (mode) {
       case "go to current time":
@@ -62,14 +67,14 @@ const ClockBlock: React.FC<ClockBlockProps> = ({
         );
         break;
     }
-  }, [mode]);
+  }, [mode, isPivot, col, row, char]);
 
   return (
     <div
       className="clock-block-container"
       style={{
-        gridTemplateColumns: `repeat(${col}, 1fr)`,
-        gridTemplateRows: `repeat(${row}, 1fr)`,
+        gridTemplateColumns: `repeat(${isPivot ? row : col}, 1fr)`,
+        gridTemplateRows: `repeat(${isPivot ? col : row}, 1fr)`,
       }}
     >
       {[...Array(col * row).keys()].map((_, index) => (
