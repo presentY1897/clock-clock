@@ -24,11 +24,12 @@ const ClockClock: React.FC<ClockClockProps> = ({
     return `${hours}${withColon ? ":" : ""}${minutes}`;
   };
 
-  const [timeString, setTimeString] = useState(formatTime(new Date()));
+  const [timeString, setTimeString] = useState("CLOCK");
   const [transitionDuration, setTransitionDuration] = useState(
-    (60 - new Date().getSeconds()) * MILLISECOND_IN_SECOND
+    0
+    // (60 - new Date().getSeconds() - 2) * MILLISECOND_IN_SECOND
   );
-  const [mode, setMode] = useState<ModeState>("random");
+  const [mode, setMode] = useState<ModeState>("go to current time");
 
   useEffect(() => {
     const timerId = setTimeout(() => {
