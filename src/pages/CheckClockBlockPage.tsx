@@ -1,7 +1,7 @@
 import ClockBlock from "../components/ClockBlock";
 
 const CheckClockBlockPage = () => {
-  const characters = "0123456789:";
+  const characters = "CLOCK0123456789:";
   return (
     <div
       style={{
