@@ -12,14 +12,6 @@ const L1 = { hourAngle: 0, minuteAngle: 90 };
 const L2 = { hourAngle: 90, minuteAngle: 180 };
 const L3 = { hourAngle: 180, minuteAngle: 270 };
 const L4 = { hourAngle: 270, minuteAngle: 0 };
-const D1201 = { hourAngle: 0, minuteAngle: 120 };
-const D1202 = { hourAngle: 90, minuteAngle: 210 };
-const D1203 = { hourAngle: 180, minuteAngle: 300 };
-const D1204 = { hourAngle: 270, minuteAngle: 30 };
-const D601 = { hourAngle: 0, minuteAngle: 60 };
-const D602 = { hourAngle: 90, minuteAngle: 150 };
-const D603 = { hourAngle: 180, minuteAngle: 240 };
-const D604 = { hourAngle: 270, minuteAngle: 330 };
 
 const NORMAL_ANGLE_MIN_COL = 4;
 const NORMAL_ANGLE_MIN_ROW = 6;
