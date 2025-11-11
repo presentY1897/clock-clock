@@ -26,7 +26,7 @@ const ClockClock: React.FC<ClockClockProps> = ({
 
   const [timeString, setTimeString] = useState(formatTime(new Date()));
   const [transitionDuration, setTransitionDuration] = useState(
-    (60 - new Date().getSeconds() - 2) * MILLISECOND_IN_SECOND
+    (60 - new Date().getSeconds()) * MILLISECOND_IN_SECOND
   );
   const [mode, setMode] = useState<ModeState>("random");
 
@@ -34,7 +34,6 @@ const ClockClock: React.FC<ClockClockProps> = ({
     const timerId = setTimeout(() => {
       switch (mode) {
         case "go to current time":
-          setTimeString(formatTime(new Date()));
           setTransitionDuration(10 * MILLISECOND_IN_SECOND);
           setMode("waiting");
           break;
@@ -51,7 +50,15 @@ const ClockClock: React.FC<ClockClockProps> = ({
     }, transitionDuration);
 
     return () => clearInterval(timerId);
-  }, [mode]);
+  }, [mode, transitionDuration]);
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setTimeString(formatTime(new Date()));
+    }, 1 * MILLISECOND_IN_SECOND);
+
+    return () => clearInterval(timerId);
+  }, [timeString]);
 
   return (
     <div
