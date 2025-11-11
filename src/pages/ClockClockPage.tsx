@@ -7,7 +7,7 @@ const NORMAL_CLOCK_BLOCK_COUNT = 5;
 const CLOCK_MARGIN_PX = 10;
 
 const getWindowDimensions = () => {
-  const { innerWidth: width, innerHeight: height } = window;
+  const { clientWidth: width, clientHeight: height } = document.documentElement;
   return { width, height };
 };
 
@@ -33,9 +33,18 @@ const ClockClockPage = () => {
         (NORMAL_CLOCK_BLOCK_COL_COUNT * NORMAL_CLOCK_BLOCK_COUNT)
     ) - CLOCK_MARGIN_PX;
 
+  const rowCount = Math.floor(
+    (isPortrait ? windowDimensions.width : windowDimensions.height) /
+      (clockSize + CLOCK_MARGIN_PX)
+  );
+
   return (
     <div className="page">
-      <ClockClock clockSize={`${clockSize}px`} isPortrait={isPortrait} />
+      <ClockClock
+        clockSize={`${clockSize}px`}
+        isPortrait={isPortrait}
+        blockSize={{ col: NORMAL_CLOCK_BLOCK_COL_COUNT, row: rowCount }}
+      />
     </div>
   );
 };
