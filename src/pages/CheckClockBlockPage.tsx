@@ -14,8 +14,8 @@ const CheckClockBlockPage = () => {
         <ClockBlock
           key={index}
           char={char}
-          col={4}
-          row={6}
+          col={2}
+          row={3}
           mode={"go to current time"}
           transitionDuration={0}
         />
