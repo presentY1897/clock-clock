@@ -19,7 +19,7 @@ const NORMAL_ANGLE_MIN_ROW = 6;
 
 export const getAngles = (maxCol: number, maxRow: number, char: string) => {
   if (maxCol < NORMAL_ANGLE_MIN_COL || maxRow < NORMAL_ANGLE_MIN_ROW) {
-    return [];
+    return getMinimumAngles(maxCol, maxRow, char);
   } else {
     return getNormalAngles(maxCol, maxRow, char);
   }
@@ -58,6 +58,245 @@ export const pivotAngles = (maxCol: number, maxRow: number, angles: Angle[]) => 
   }
   return pivotAngles;
 
+}
+
+const getMinimumAngles = (maxCol: number, maxRow: number, char: string) => {
+  const angles = [];
+
+  switch (char) {
+    case 'O':
+    case 'o':
+    case '0':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: maxRow - 1 },
+          { col: 0, row: maxRow - 1 },
+          { col: 0, row: 0 },
+        ])));
+      break;
+    case '1':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        getLinesFromVertex([
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: maxRow - 1 },
+        ])));
+      break;
+    case '2':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: 0, row: maxRow - 1 },
+          { col: maxCol - 1, row: maxRow - 1 },
+        ])));
+      break;
+    case '3':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        [...getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+        ]),
+        ...getLinesFromVertex([
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: maxRow - 1 },
+          { col: 0, row: maxRow - 1 },
+        ])
+        ]));
+      break;
+    case '4':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        [...getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+        ]),
+        ...getLinesFromVertex([
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: maxRow - 1 },
+        ])
+        ]));
+      break;
+    case '5':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        getLinesFromVertex([
+          { col: maxCol - 1, row: 0 },
+          { col: 0, row: 0 },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: maxRow - 1 },
+          { col: 0, row: maxRow - 1 },
+        ])));
+      break;
+    case '6':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        [...getLinesFromVertex([
+          { col: maxCol - 1, row: 0 },
+          { col: 0, row: 0 },
+          { col: 0, row: maxRow - 1 },
+        ]),
+        ...getLinesFromVertex([
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: maxRow - 1 },
+          { col: 0, row: maxRow - 1 },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+        ])
+        ]));
+      break;
+    case '7':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: maxRow - 1 },
+        ])));
+      break;
+    case '8':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        [...getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: 0, row: 0 },
+        ]),
+        ...getLinesFromVertex([
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: maxRow - 1 },
+          { col: 0, row: maxRow - 1 },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+        ])
+        ]));
+      break;
+    case '9':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        [...getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: maxCol - 1, row: 0 },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: 0, row: 0 },
+        ]),
+        ...getLinesFromVertex([
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: maxRow - 1 },
+          { col: 0, row: maxRow - 1 },
+        ])
+        ]));
+      break;
+    case 'C':
+    case 'c':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        getLinesFromVertex([
+          { col: maxCol - 1, row: 0 },
+          { col: 0, row: 0 },
+          { col: 0, row: maxRow - 1 },
+          { col: maxCol - 1, row: maxRow - 1 },
+        ])));
+      break;
+    case 'L':
+    case 'l':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: 0, row: maxRow - 1 },
+          { col: maxCol - 1, row: maxRow - 1 },
+        ])));
+      break;
+    case 'K':
+    case 'k':
+      angles.push(...adjustClockByLines([...Array(maxCol * maxRow)].map(() => E).map((angle, index) => ({
+        usedCount: 0,
+        col: index % maxCol,
+        row: Math.floor(index / maxCol),
+        angle: angle,
+      })),
+        [...getLinesFromVertex([
+          { col: 0, row: 0 },
+          { col: 0, row: maxRow - 1 },
+        ]),
+        ...getLinesFromVertex([
+          { col: maxCol - 1, row: 0 },
+          { col: 0, row: Math.floor((maxRow) / 2) },
+          { col: maxCol - 1, row: maxRow - 1 },
+        ])
+        ]));
+      break;
+    case ':':
+    default:
+      angles.push(...[...Array(maxCol * maxRow)].map(() => E))
+      break;
+  }
+
+  return angles;
 }
 
 const getNormalAngles = (maxCol: number, maxRow: number, char: string) => {
