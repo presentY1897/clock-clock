@@ -9,7 +9,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<ClockClockPage />} />
-        <Route path="/check-clock-block" element={<CheckClockBlockPage />} />
+        <Route
+          path="/check-clock-block/:size?"
+          element={<CheckClockBlockPage />}
+        />
       </Routes>
     </div>
   );
