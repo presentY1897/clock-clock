@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ClockBlock.css";
 import ClockFace from "./clock/ClockFace";
-import { getAngles, pivotAngles } from "../utils/angleMap";
+import { generateClockCharacter, pivotAngles } from "../utils/clockFont";
 
 export type ModeState = "random" | "go to current time" | "waiting";
 
@@ -32,7 +32,7 @@ const ClockBlock: React.FC<ClockBlockProps> = ({
   };
 
   useEffect(() => {
-    let angles = getAngles(col, row, char);
+    let angles = generateClockCharacter(col, row, char);
     if (angles.length === 0) return;
     if (isPivot) {
       angles = pivotAngles(col, row, angles);
