@@ -21,7 +21,7 @@ export const generateClockCharacter = (maxCol: number, maxRow: number, char: str
   }
 
   const isMinimumMode = maxCol < NORMAL_ANGLE_MIN_COL || maxRow < NORMAL_ANGLE_MIN_ROW;
-  const angleGenerator = isMinimumMode ? definition.minimum : definition.normal;
+  const angleGenerator = isMinimumMode ? definition.small : definition.normal;
 
   return angleGenerator(maxCol, maxRow);
 };

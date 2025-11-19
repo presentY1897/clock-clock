@@ -18,12 +18,12 @@ const LOWER_LINE = (maxCol: number) => [
 
 export const CHAR_DEFINITIONS: {
 	[key: string]: {
-		minimum: (maxCol: number, maxRow: number) => Angle[];
+		small: (maxCol: number, maxRow: number) => Angle[];
 		normal: (maxCol: number, maxRow: number) => Angle[];
 	}
 } = {
 	'0': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: maxCol - 1, row: 0 },
@@ -45,7 +45,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'1': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: maxCol - 1, row: 0 },
 				{ col: maxCol - 1, row: maxRow - 1 },
@@ -62,7 +62,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'2': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: maxCol - 1, row: 0 },
@@ -90,7 +90,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'3': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: maxCol - 1, row: 0 },
@@ -121,7 +121,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'4': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: 0, row: Math.floor(maxRow / 2) },
@@ -148,7 +148,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'5': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: maxCol - 1, row: 0 },
 				{ col: 0, row: 0 },
@@ -176,7 +176,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'6': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: maxCol - 1, row: 0 },
 				{ col: 0, row: 0 },
@@ -208,7 +208,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'7': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: maxCol - 1, row: 0 },
@@ -227,7 +227,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'8': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: maxCol - 1, row: 0 },
@@ -261,7 +261,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'9': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: maxCol - 1, row: 0 },
@@ -294,7 +294,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'c': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: maxCol - 1, row: 0 },
 				{ col: 0, row: 0 },
@@ -315,7 +315,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'l': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: 0, row: maxRow - 1 },
@@ -334,7 +334,7 @@ export const CHAR_DEFINITIONS: {
 		},
 	},
 	'k': {
-		minimum: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
+		small: (maxCol, maxRow) => createAnglesFromVertexPaths(maxCol, maxRow, [
 			[
 				{ col: 0, row: 0 },
 				{ col: 0, row: maxRow - 1 },
@@ -362,7 +362,7 @@ export const CHAR_DEFINITIONS: {
 		]),
 	},
 	':': {
-		minimum: (maxCol, maxRow) => [...Array(maxCol * maxRow)].map(() => E),
+		small: (maxCol, maxRow) => [...Array(maxCol * maxRow)].map(() => E),
 		normal: (maxCol, maxRow) => {
 			const angles = [];
 			const emptyTopBottomRows = Math.floor((maxRow - 5) / 2);
